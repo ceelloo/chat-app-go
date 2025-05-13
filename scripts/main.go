@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/ceelloo/chat-go/internal/database"
-	"github.com/ceelloo/chat-go/internal/env"
+	"github.com/ceelloo/chat-app-go/internal/database"
+	"github.com/ceelloo/chat-app-go/internal/env"
 )
 
 func main() {

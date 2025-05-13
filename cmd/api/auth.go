@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
-	"github.com/ceelloo/chat-go/internal/store"
-	"github.com/ceelloo/chat-go/internal/utils"
+	"github.com/ceelloo/chat-app-go/internal/store"
+	"github.com/ceelloo/chat-app-go/internal/utils"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -66,10 +66,10 @@ func (app *application) registerUserHandler(c *fiber.Ctx) error {
 	})
 
 	return c.Status(200).JSON(fiber.Map{
-		"status": "success",
-		"data":   user,
-		"token":  createdSession.Token,
+		"status":     "success",
+		"data":       user,
+		"token":      createdSession.Token,
 		"csrf_token": createdSession.CsrfToken,
-		"message": "User created successfully",
+		"message":    "User created successfully",
 	})
 }

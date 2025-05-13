@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/ceelloo/chat-go/internal/store"
+	"github.com/ceelloo/chat-app-go/internal/store"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -12,20 +12,20 @@ import (
 
 type application struct {
 	config config
-	store store.Storage
+	store  store.Storage
 }
 
 type config struct {
 	addr string
-	db dbConfig
-	env string
+	db   dbConfig
+	env  string
 }
 
 type dbConfig struct {
-	addr string
+	addr         string
 	maxOpenConns int
 	maxIdleConns int
-	maxIdleTime string
+	maxIdleTime  string
 }
 
 func (app *application) mount() *fiber.App {

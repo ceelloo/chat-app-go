@@ -1,4 +1,4 @@
-module github.com/ceelloo/chat-go
+module github.com/ceelloo/chat-app-go
 
 go 1.24.3
 
