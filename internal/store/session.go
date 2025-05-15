@@ -46,3 +46,24 @@ func (s *SessionStore) Create(ctx context.Context, session Session) (Session, er
 
 	return returnedSession, nil
 }
+
+
+func (s *SessionStore) Get(ctx context.Context, token string) (Session, error) {
+	query := `
+		SELECT id, user_id, token, csrf_token, expires_at, created_at
+		FROM session
+		WHERE token = ?
+	`
+
+	var session Session
+	err := s.db.QueryRowContext(ctx, query, token).Scan(
+		&session.Id,
+		&session.UserId,
+		&session.Token,
+		&session.CsrfToken,
+		&session.ExpiresAt,
+		&session.CreatedAt,
+	)
+
+	return session, err
+}

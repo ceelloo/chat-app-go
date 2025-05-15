@@ -49,3 +49,41 @@ func (s *UserStore) Create(ctx context.Context, user User) error {
 
 	return err
 }
+
+func (s *UserStore) GetByEmail(ctx context.Context, email string) (User, error) {
+	query := `
+		SELECT id, name, email, password, created_at
+		FROM users
+		WHERE email = ?
+	`
+
+	var user User
+	err := s.db.QueryRowContext(ctx, query, email).Scan(
+		&user.Id,
+		&user.Name,
+		&user.Email,
+		&user.Password.hash,
+		&user.CreatedAt,
+	)
+
+	return user, err
+}
+
+func (s *UserStore) GetById(ctx context.Context, id string) (User, error) {
+	query := `
+		SELECT id, name, email, password, created_at
+		FROM users
+		WHERE id = ?
+	`
+
+	var user User
+	err := s.db.QueryRowContext(ctx, query, id).Scan(
+		&user.Id,
+		&user.Name,
+		&user.Email,
+		&user.Password.hash,
+		&user.CreatedAt,
+	)
+
+	return user, err
+}
